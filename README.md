@@ -1,4 +1,4 @@
-# 🌟 Miracle Hotel  
+# 🌟 Miracle Hotel - Web Project
 
 This repository contains the foundation of **Miracle Hotel**, a hotel management project created with **PHP** and **MySQL**.  
 
@@ -13,7 +13,7 @@ This is a work in progress, and future updates will include more features and an
 
 Feel free to explore the repository and contribute! 🚀  
 
-# 🌟 Miracle Hotel  
+# 🌟 Miracle Hotel - Proyecto Web 
 
 Este repositorio contiene la base de **Miracle Hotel**, un proyecto de gestión hotelera creado con **PHP** y **MySQL**.  
 
