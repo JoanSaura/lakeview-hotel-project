@@ -1,0 +1,29 @@
+SET FOREIGN_KEY_CHECKS = 0;
+
+DROP TABLE IF EXISTS `071_customers`, 
+                     `071_room_type`,
+                     `071_rooms`,
+                     `071_employee`, 
+                     `071_employee_position`, 
+                     `071_reservations`,
+                     `071_invoices`,
+                     `071_services`,  
+                     `071_reports`;
+    
+SET FOREIGN_KEY_CHECKS = 1;
+
+- Que se puedan encargar servicios de manera singular
+- Subida de archivos
+- Menus conceptuales Reservas 
+
+    Reception
+        *Today -Check in
+        *Today -Check out
+        *Today -Customer By room number
+        *Insert to do Mantenance
+    Maintanace
+        *To Do
+        *Done
+    Cleaning
+        *Checkin
+        *Checkin-out

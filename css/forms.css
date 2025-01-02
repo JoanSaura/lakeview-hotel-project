@@ -1,0 +1,376 @@
+#container-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form {
+  text-align: center;
+  width:60%;
+  margin: 35px auto;
+  padding: 90px 10px;
+  background-color: #f4f4f9;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-form > label {
+  font-size: 18px;
+  font-weight: 1200px;
+  color: #333;
+}
+
+.login-form > input {
+  background-color: #eaeaea;
+  padding: 25px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #555;
+  transition: all 0.3s ease;
+}
+
+.login-form > select {
+  padding: 25px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.login-form > input:focus {
+  background-color: #fff;
+  border-color: #6c63ff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(108, 99, 255, 0.4);
+}
+
+.submit-button {
+  display: flex;
+  justify-content: center;
+}
+
+.submit-button .submit {
+  background-color: #6c63ff;
+  color: #fff;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button .submit:hover {
+  background-color: #5845e8;
+}
+
+#info-display {
+  display: flex;
+  justify-content: center;
+}
+
+#room-list,
+#customers-list,
+#reservations-list,
+#room-type-list {
+  display: flex;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto;
+  flex-wrap: wrap;
+}
+
+#edit-icons {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+#edit-icons > i {
+  padding: 10px;
+}
+
+#edit-icons > .fa-pencil:hover {
+  background-color: green;
+  color: #ffffff;
+}
+
+#edit-icons > .fa-trash:hover {
+  background-color: red;
+  color: #ffffff;
+}
+
+.fa-solid {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  font-family: 40px;
+  margin: 15px;
+}
+
+#customers-list,
+#room-list {
+  display: grid;
+}
+
+.name-display {
+  background-color:#3498db;
+  color: black;
+  width: 100%;
+  padding: 15px;
+
+}
+.customer-card,
+.room-card,
+.reservation-card,
+.room-type-card {
+  background-color: aliceblue;
+  margin: 15px;
+  padding: 15px;
+  font-size: 22px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 550px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#reservation-form {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+}
+
+#total-price {
+  color: red;
+  font-weight: bold;
+}
+
+#available-rooms-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px;
+  padding: 20px;
+  background-color: #f8f4e3;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#available-rooms-section h3 {
+  font-size: 1.8em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: #d9534f;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.available-rooms {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.room {
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+.room img {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+}
+.room:hover {
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.room h4 {
+  font-size: 1.4em;
+  color: #4a4a4a;
+  margin: 10px 0;
+}
+
+.room p {
+  font-size: 1em;
+  color: #666;
+  margin: 5px 0;
+}
+
+form {
+  margin-top: 15px;
+}
+
+button[type="submit"] {
+  background-color: #5cb85c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #4cae4c;
+}
+
+.error-display {
+  color: red;
+  font-size: 0.9em;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .login-form {
+    width: 80%;
+    padding: 60px 20px;
+  }
+
+  .login-form > label {
+    font-size: 16px;
+  }
+
+  .login-form > input,
+  .login-form > select {
+    padding: 15px;
+    font-size: 14px;
+  }
+
+  .submit-button .submit {
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+
+  #container-form {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .customer-card,
+  .room-card,
+  .reservation-card,
+  .room-type-card {
+    width: 100%;
+    font-size: 18px;
+  }
+
+  .room {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .name-display {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  #available-rooms-section {
+    margin: 15px;
+    padding: 15px;
+  }
+
+  .room h4 {
+    font-size: 1.2em;
+  }
+
+  .room p {
+    font-size: 0.9em;
+  }
+
+  #reservation-form {
+    padding: 20px;
+  }
+
+  #total-price {
+    font-size: 1.2em;
+  }
+
+  form {
+    margin-top: 10px;
+  }
+
+  button[type="submit"] {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-form {
+    width: 90%;
+    padding: 40px 15px;
+  }
+
+  .login-form > label {
+    font-size: 14px;
+  }
+
+  .login-form > input,
+  .login-form > select {
+    padding: 12px;
+    font-size: 12px;
+  }
+
+  .submit-button .submit {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  .customer-card,
+  .room-card,
+  .reservation-card,
+  .room-type-card {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .room {
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .name-display {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  #available-rooms-section {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .room h4 {
+    font-size: 1em;
+  }
+
+  .room p {
+    font-size: 0.8em;
+  }
+
+  #reservation-form {
+    padding: 15px;
+  }
+
+  #total-price {
+    font-size: 1.1em;
+  }
+
+  button[type="submit"] {
+    padding: 7px 10px;
+    font-size: 12px;
+  }
+}

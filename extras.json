@@ -1,0 +1,46 @@
+{
+    "reservation_services": {
+        "GYM": [
+            {
+                "hours": {
+                    "open": "10:00",
+                    "close": "20:00"
+                },
+                "prices": {
+                    "standart_price" : "20"
+                }
+            }
+        ],
+        "Spa": [
+            {
+                "hours": {
+                    "open": "16:00",
+                    "close": "01:00"
+                },
+                "prices":{
+                    "standart_price" : "20"       
+                }
+            }
+        ],
+        "Restaurant":[
+            {
+                "hours":{
+                    "open":"8:00",
+                    "close":"23:00"
+                },
+                "prices":{
+                    "breakfast":"8.00",
+                    "meal":"16.00",
+                    "dinner":"16.00",
+                    "extras":{
+                     "deserts":"2.00",
+                     "high quality wine":"15.00",
+                     "terrace":"3.00"
+                    }
+                }
+            }
+        ]
+    }
+}
+
+
