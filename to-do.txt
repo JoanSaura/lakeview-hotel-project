@@ -27,3 +27,5 @@ SET FOREIGN_KEY_CHECKS = 1;
     Cleaning
         *Checkin
         *Checkin-out
+    * Log file -> Errors
+               -> User activity (Login / Log out)

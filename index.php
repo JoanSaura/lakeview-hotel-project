@@ -1,6 +1,8 @@
 <?php $root = $_SERVER['DOCUMENT_ROOT']; ?>
 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/student071/dwes/files/common-files/header.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/student071/dwes/files/sandbox/try.php'; ?>
+
 
 <div id="home-container">
 
@@ -8,7 +10,6 @@
   <div class="home-header">
   <h3>Welcome to MIRACLE Hotel</h3>
   </div>
-  
   <div class="slider">
     <img src="/student071/dwes/img/1.jpg" alt="Image 1" class="active">
     <img src="/student071/dwes/img/2.jpg" alt="Image 2">
