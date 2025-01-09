@@ -1,7 +1,6 @@
 <?php $root = $_SERVER['DOCUMENT_ROOT']; ?>
 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/student071/dwes/files/common-files/header.php'; ?>
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/student071/dwes/files/sandbox/try.php'; ?>
 
 
 <div id="home-container">

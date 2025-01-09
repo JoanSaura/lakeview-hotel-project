@@ -5,6 +5,9 @@ $root = $_SERVER['DOCUMENT_ROOT'];
 include($root . '/student071/dwes/files/common-files/db_connection.php');
 include($root . '/student071/dwes/files/common-files/header.php'); 
 
+$log_file = $root . '/student071/dwes/files/logs/login_register.txt';
+$handle = fopen($log_file,'a'); // Se abre el archivo en modo append para agregar nuevas entradas
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = mysqli_real_escape_string($conn, $_POST['u-email']);  
     $password = $_POST['u-password'];  
@@ -27,6 +30,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             setcookie('user_mail', $user['user_mail'], 0, '/');  
             setcookie('user_online', $user['user_online'], 0, '/');  
             setcookie('role', $user['user_role'], 0, '/');  
+
+            // Registrar en el log
+            fwrite($handle, "[" . date('Y-m-d H:i:s') . "], Email = " . $email . ", User_ID = " . $user['user_id'] . "\n");
 
             header("Location: /student071/dwes/index.php");
             exit();

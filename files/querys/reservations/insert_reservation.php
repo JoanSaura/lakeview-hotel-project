@@ -1,7 +1,7 @@
 <?php
 session_start();
 include($_SERVER['DOCUMENT_ROOT'] . '/student071/dwes/files/common-files/db_connection.php');
-include $_SERVER['DOCUMENT_ROOT'] . '/student071/dwes/files/common-files/functions.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/student071/dwes/files/functions/showPopUp.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['client-id'], $_POST['date-in'], $_POST['date-out'])) {

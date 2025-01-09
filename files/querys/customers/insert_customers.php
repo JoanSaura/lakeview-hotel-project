@@ -1,6 +1,6 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . '/student071/dwes/files/common-files/db_connection.php');
-include $_SERVER['DOCUMENT_ROOT'] . '/student071/dwes/files/common-files/functions.php'; 
+include $_SERVER['DOCUMENT_ROOT'] . '/student071/dwes/files/functions/showPopUp.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
