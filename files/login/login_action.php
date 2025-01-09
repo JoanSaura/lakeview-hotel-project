@@ -6,7 +6,7 @@ include($root . '/student071/dwes/files/common-files/db_connection.php');
 include($root . '/student071/dwes/files/common-files/header.php'); 
 
 $log_file = $root . '/student071/dwes/files/logs/login_register.txt';
-$handle = fopen($log_file,'a'); // Se abre el archivo en modo append para agregar nuevas entradas
+$handle = fopen($log_file,'a'); 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = mysqli_real_escape_string($conn, $_POST['u-email']);  
