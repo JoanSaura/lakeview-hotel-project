@@ -11,7 +11,7 @@ $root = $_SERVER['DOCUMENT_ROOT'];
 $log_file = $root . '/student071/dwes/files/logs/logout_register.txt';
 $handle = fopen($log_file, 'a');
 
-fwrite($handle, "[" . date('Y-m-d H:i:s') . "]User_ID = " . $user_id . ", Email = " . $user_mail . "\n");
+fwrite($handle, "[" . date('Y-m-d H:i:s') . "] User_ID = " . $user_id  . "\n");
 
 header("Location: /student071/dwes/index.php"); 
 exit();

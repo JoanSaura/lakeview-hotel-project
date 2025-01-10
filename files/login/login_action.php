@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             setcookie('role', $user['user_role'], 0, '/');  
 
             // Registrar en el log
-            fwrite($handle, "[" . date('Y-m-d H:i:s') . "], Email = " . $email . ", User_ID = " . $user['user_id'] . "\n");
+            fwrite($handle, "[" . date('Y-m-d H:i:s') . "] User_ID = " . $user['user_id'] . "\n");
 
             header("Location: /student071/dwes/index.php");
             exit();
