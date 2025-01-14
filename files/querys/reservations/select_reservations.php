@@ -43,7 +43,7 @@ mysqli_free_result($result);
 mysqli_close($conn);
 
 if (!empty($_GET['client_name'])) {
-    header('Content-Type: application/json');
+    header(header: 'Content-Type: application/json');
     echo json_encode($reservations);
     exit; 
 }

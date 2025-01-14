@@ -1,6 +1,6 @@
-# 🌟 Miracle Hotel - Web Project
+# 🌟 Lakeview Hotel - Web Project
 
-This repository contains the foundation of **Miracle Hotel**, a hotel management project created with **PHP** and **MySQL**.  
+This repository contains the foundation of **Lakeview Hotel**, a hotel management project created with **PHP** and **MySQL**.  
 
 The goal of the project is to replicate the functionalities of a modern hotel website, featuring essential characteristics typical of such platforms.  
 
@@ -13,9 +13,9 @@ This is a work in progress, and future updates will include more features and an
 
 Feel free to explore the repository and contribute! 🚀  
 
-# 🌟 Miracle Hotel - Proyecto Web 
+# 🌟 Lakeview Hotel - Proyecto Web 
 
-Este repositorio contiene la base de **Miracle Hotel**, un proyecto de gestión hotelera creado con **PHP** y **MySQL**.  
+Este repositorio contiene la base de **Lakeview Hotel**, un proyecto de gestión hotelera creado con **PHP** y **MySQL**.  
 
 El objetivo del proyecto es replicar las funcionalidades de un sitio web moderno para hoteles, con características esenciales típicas de estas plataformas.  
 

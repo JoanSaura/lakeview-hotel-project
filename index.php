@@ -7,11 +7,13 @@
 
 <div id="home">
   <div class="home-header">
-  <h3>Welcome to MIRACLE Hotel</h3>
+  <h3>Welcome to Lakeview Hotel</h3>
   </div>
   <div class="slider">
     <img src="/student071/dwes/img/1.jpg" alt="Image 1" class="active">
     <img src="/student071/dwes/img/2.jpg" alt="Image 2">
+    <img src="/student071/dwes/img/3.jpg" alt="Image 3">
+
   </div>
 </div>
 

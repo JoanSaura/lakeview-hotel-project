@@ -55,7 +55,7 @@ $html = "
     </style>
 
     <div class='invoice-header'>
-        <h1>Miracle Hotel</h1>
+        <h1>Lakeview Hotel</h1>
         <h2>Hotel Reservation Invoice</h2>
     </div>
     <div class='invoice-details'>

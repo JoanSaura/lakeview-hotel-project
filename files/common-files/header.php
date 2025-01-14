@@ -13,7 +13,7 @@ $root = $_SERVER['DOCUMENT_ROOT'];
     <link rel="stylesheet" href="/student071/dwes/css/style.css">
     <link rel="stylesheet" href="/student071/dwes/css/manuals.css" />
     <link rel="stylesheet" href="/student071/dwes/css/forms.css">
-    <title>Miracle Hotel</title>
+    <title>Lakeview Hotel</title>
     <script>
         function alertForLogin() {
             alert("You must be logged in to make a reservation.");
@@ -27,7 +27,7 @@ $root = $_SERVER['DOCUMENT_ROOT'];
     <div id="top-container">
         <div id="head">
             <a href="/student071/dwes/index.php">
-                <img src="/student071/dwes/img/LogoText.png" alt="Miracle Hotel">
+                <img src="/student071/dwes/img/LogoText.png" alt="Lakeview Hotel">
             </a>
             <div class="user-menu">
                 <?php if (isset($_SESSION['user_id'])): ?>
