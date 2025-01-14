@@ -66,6 +66,9 @@ body {
 }
 
 #middle-title {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   width: 100%;
   text-align: center;
   padding: 25px;
@@ -547,4 +550,10 @@ body {
   .service {
     font-size: xx-large;
   }
+}
+#middle-title #searcher {
+  background-color: #a8a7a7;
+  border-radius: 20px;
+  width: 40%;
+  font-size: x-large;
 }
