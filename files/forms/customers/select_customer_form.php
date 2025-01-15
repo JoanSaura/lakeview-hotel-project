@@ -5,6 +5,11 @@ $customers = include($_SERVER['DOCUMENT_ROOT'] . '/student071/dwes/files/querys/
 
 <div id="middle-title">
     <h1>List of Customers</h1>
+    <section id="searcher">
+            <h4>Searcher</h4>
+            <label for="client_name">Client Name</label>
+            <input type="text" name="client_name" placeholder="Enter the firstname or lastname" id="FullNameSearcher" onkeyup="searchFullName(this.value)">
+        </section>
 </div>
 
 <div id="info-display">
@@ -30,3 +35,23 @@ $customers = include($_SERVER['DOCUMENT_ROOT'] . '/student071/dwes/files/querys/
     </div>
 </div>
 <?php include($root . '/student071/dwes/files/common-files/footer.php'); ?>
+<script>
+    function searchFullName(clientName) {
+        const reservationCards = document.querySelectorAll('.customer-card');
+        const searchTerm = clientName.trim().toLowerCase();
+        const searcher = document.getElementById('FullNameSearcher')
+
+        reservationCards.forEach(card => {
+            const clientDetails = card.querySelector('.name-display').textContent.toLowerCase();
+            if (clientDetails.includes(searchTerm)) {
+                card.style.display = 'block'; 
+            } else {
+                card.style.display = 'none'; 
+            }
+        });
+    }
+
+    searcher.addEventListener('keyup', function () {
+        searchFullName(this.value);
+    });
+</script>

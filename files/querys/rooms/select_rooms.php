@@ -1,5 +1,6 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . '/student071/dwes/files/common-files/db_connection.php');
+$room_number = isset($_GET['client_name']);
 
 $sql = "SELECT 
     r.room_number AS room_number, 
