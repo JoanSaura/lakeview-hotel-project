@@ -4,7 +4,7 @@
 
 <div class="about-container">
     <section class="hero-section">
-        <h1>About Hotel Miracle</h1>
+        <h1>About Lakeview Hotel</h1>
         <p>Experience unparalleled luxury and comfort at Hotel Miracle.</p>
     </section>
 
