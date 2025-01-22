@@ -1,6 +1,7 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . '/student071/dwes/files/common-files/db_connection.php');
-$room_number = isset($_GET['client_name']);
+
+$room_number = isset($_GET['room_number']) && !empty($_GET['room_number']) ? $_GET['room_number'] : null;
 
 $sql = "SELECT 
     r.room_number AS room_number, 
@@ -12,14 +13,23 @@ FROM
 JOIN 
     071_room_type rt ON r.room_type_id = rt.room_type_id";
 
+if ($room_number) {
+    $sql .= " WHERE r.room_number LIKE '%" . $conn->real_escape_string($room_number) . "%'";
+}
+
 $result = mysqli_query($conn, $sql);
 
 $rooms = array();
-
 if ($result && mysqli_num_rows($result) > 0) {
     while ($row = mysqli_fetch_assoc($result)) {
         $rooms[] = $row; 
     }
+}
+
+if ($room_number) {
+    header('Content-Type: application/json');
+    echo json_encode($rooms); 
+    exit;
 }
 
 mysqli_free_result($result);

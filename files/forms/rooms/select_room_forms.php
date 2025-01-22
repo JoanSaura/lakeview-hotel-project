@@ -43,22 +43,33 @@ $rooms = include($root . '/student071/dwes/files/querys/rooms/select_rooms.php')
 
 <?php include($root . '/student071/dwes/files/common-files/footer.php'); ?>
 <script>
-    function searchRoomNumber(RoomNumber) {
-        const RoomCard = document.querySelectorAll('#room-list');
-        const searchTerm = RoomNumber.trim();
-        const searcher = document.getElementById('RoomNumberSearcher')
+    document.getElementById('RoomNumberSearcher').addEventListener('keyup', function () {
+        const roomNumber = this.value.trim(); // Obtener el valor del input
 
-        RoomCard.forEach(card => {
-            const RoomDetails = card.querySelector('.name-display').textContent();
-            if (RoomDetails.includes(searchTerm)) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', '/student071/dwes/files/querys/rooms/select_rooms.php?room_number=' + encodeURIComponent(roomNumber), true);
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                try {
+                    const rooms = JSON.parse(xhr.responseText);
+                    const roomCards = document.querySelectorAll('.room-card');
+                    roomCards.forEach(card => {
+                        const roomNumberText = card.querySelector('.name-display h4').textContent.trim();
+                        const isMatch = rooms.some(room => room.room_number === roomNumberText);
+
+                        if (isMatch) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                } catch (error) {
+                    console.error('Error procesando la respuesta AJAX:', error);
+                }
             }
-        });
-    }
-
-    searcher.addEventListener('keyup', function() {
-        searchRoomNumber(this.value);
+        };
+        xhr.send();
     });
 </script>
+
