@@ -2,7 +2,6 @@
 $root = $_SERVER['DOCUMENT_ROOT'];
 
 include($root . '/student071/dwes/files/common-files/db_connection.php'); 
-
 include($root . '/student071/dwes/files/common-files/header.php');
 
 $sql = 'SELECT * FROM 071_services';
@@ -12,7 +11,7 @@ $result = mysqli_query($conn, $sql);
 
 <form action="" class="login-form">
     <h1>Add a service</h1>
-    <select name="service-inter" id="">
+    <select name="service-inter" id="" onkeyup="getServiceAtributes(this.value)">
         <option value="">Add a service</option>
         <?php 
         if ($result && mysqli_num_rows($result) > 0) {
@@ -33,3 +32,8 @@ $result = mysqli_query($conn, $sql);
 <?php 
 include($root . '/student071/dwes/files/common-files/footer.php');
 ?>
+<script>
+    function getServiceAtributes(service){
+
+    }
+</script>
