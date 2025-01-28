@@ -11,7 +11,7 @@ $result = mysqli_query($conn, $sql);
 
 <form action="" class="login-form">
     <h1>Add a service</h1>
-    <select name="service-inter" id="" onkeyup="getServiceAtributes(this.value)">
+    <select name="service-inter" id="">
         <option value="">Add a service</option>
         <?php 
         if ($result && mysqli_num_rows($result) > 0) {
@@ -27,13 +27,13 @@ $result = mysqli_query($conn, $sql);
         }
         ?>
     </select>
+    <label for="service-date">Date</label>
+    <input type="service-date" name="" id="">
+
+    <label for="free-hours">Hours</label>
+    <select name="free-hours" id=""></select>
 </form>
 
 <?php 
 include($root . '/student071/dwes/files/common-files/footer.php');
 ?>
-<script>
-    function getServiceAtributes(service){
-
-    }
-</script>

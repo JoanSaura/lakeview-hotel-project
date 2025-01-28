@@ -27,5 +27,14 @@ SET FOREIGN_KEY_CHECKS = 1;
     Cleaning
         *Checkin
         *Checkin-out
-    * Log file -> User activity (Login / Log out)
-               -> Username /Date and Time /Action
+
+
+    reservation_services
+rs_id
+reservation_id
+service_id
+quantity
+rs_price
+rs_date
+rs_time
+rs_state
