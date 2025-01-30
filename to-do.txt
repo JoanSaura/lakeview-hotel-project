@@ -30,11 +30,12 @@ SET FOREIGN_KEY_CHECKS = 1;
 
 
     reservation_services
-rs_id
-reservation_id
-service_id
-quantity
-rs_price
-rs_date
-rs_time
-rs_state
+
+rs_id int
+reservation_id int(Foregin key 071_reservations)
+service_id int(Foreign key 071_services)
+quantity int 
+rs_price double
+rs_date date
+rs_time ha de ser flexible (no se si Json iria bien)
+rs_state ENUM (Cancelled, Checked, )

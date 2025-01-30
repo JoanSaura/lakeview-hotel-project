@@ -38,7 +38,6 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
                 <li><a href="/student071/dwes/files/forms/reservations/update_reservation_forms.php">Update an existing reservation</a></li>
                 <li><a href="/student071/dwes/files/forms/reservations/delete_reservation_forms.php">Delete a reservation</a></li>
                 <li><a href="/student071/dwes/files/forms/reservations/service/add_unic_service.php">Add Unic service</a></li>
-                <li><a href="/student071/dwes/files/querys/reservations/assign_random_extras.php">Generate Random Extras to all reservations</a></li>
             </ul>
         </div>
     </div>
