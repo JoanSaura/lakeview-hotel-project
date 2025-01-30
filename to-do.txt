@@ -31,11 +31,11 @@ SET FOREIGN_KEY_CHECKS = 1;
 
     reservation_services
 
-rs_id int
-reservation_id int(Foregin key 071_reservations)
-service_id int(Foreign key 071_services)
-quantity int 
-rs_price double
-rs_date date
-rs_time ha de ser flexible (no se si Json iria bien)
-rs_state ENUM (Cancelled, Checked, )
+Calcular aforo
+1. Se escoge primero un servicio
+2. Se pone una fecha en concreto
+3. Se pone el numero de personas que van a ir 
+4. De la tabla 071_services coger la capacidad maxima y las horas que este servicio esta abierto
+5. De la tabla de reservation services, buscar, primero, el id del servicio que sea igual de la reserva al del que se quiere comparar.
+6. Teniendo en cuenta de esto buscar, si hay reservas del servicio, ver que días y las horas que abarcan, también cuantas personas van.
+7. Compararlas y poner en el select, teniendo en cuenta, servicio, día y cuantas personas van, mostrar el numero de aforo que hay en esa hora y, si no hay aforo, que no salga esa opción

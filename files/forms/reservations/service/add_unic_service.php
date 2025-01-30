@@ -16,27 +16,19 @@ $result = mysqli_query($conn, $sql);
     <select name="service" id="service">
         <option value="">Select a service</option>
         <?php 
-        if ($result && mysqli_num_rows($result) > 0) {
-            while ($service = mysqli_fetch_assoc($result)) {
-        ?>
-                <option value="<?php echo htmlspecialchars($service['service_id']); ?>">
-                    <?php echo htmlspecialchars($service['service_name']); ?>
-                </option>
-        <?php 
-            }
-        } else {
-            echo '<option>No services found</option>';
+        while ($service = mysqli_fetch_assoc($result)) {
+            echo '<option value="'.htmlspecialchars($service['service_id']).'">'.htmlspecialchars($service['service_name']).'</option>';
         }
         ?>
     </select>
 
     <!-- Selección de la fecha -->
     <label for="service-date">Date</label>
-    <input type="date" name="service-date" id="service-date">
+    <input type="date" name="service-date" id="service-date" required>
 
     <!-- Cantidad de personas -->
     <label for="capacity">Number of People</label>
-    <input type="number" name="capacity" id="capacity" min="1" placeholder="Enter number of people">
+    <input type="number" name="capacity" id="capacity" min="1" placeholder="Enter number of people" required>
 
     <!-- Selección de la hora con capacidad restante -->
     <label for="free-hours">Available Hours</label>
@@ -73,30 +65,27 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Enviar solicitud AJAX POST
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "/student071/dwes/files/querys/reservations/service/get_available_hours.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                const data = JSON.parse(xhr.responseText);
-                hoursSelect.innerHTML = "";
-                if (data.hours.length > 0) {
-                    data.hours.forEach(function(hour) {
-                        let option = document.createElement("option");
-                        option.value = hour.time;
-                        option.dataset.capacity = hour.remaining_capacity;
-                        option.textContent = `${hour.time}:00 (Available: ${hour.remaining_capacity})`;
-                        hoursSelect.appendChild(option);
-                    });
-                } else {
-                    hoursSelect.innerHTML = '<option>No available hours</option>';
-                }
+        fetch("/student071/dwes/files/querys/reservations/service/get_available_hours.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams({ service_id: serviceId, date: selectedDate })
+        })
+        .then(response => response.json())
+        .then(data => {
+            hoursSelect.innerHTML = "";
+            if (data.hours.length > 0) {
+                data.hours.forEach(hour => {
+                    let option = document.createElement("option");
+                    option.value = hour.time;
+                    option.dataset.capacity = hour.remaining_capacity;
+                    option.textContent = `${hour.time}:00 (Available: ${hour.remaining_capacity})`;
+                    hoursSelect.appendChild(option);
+                });
+            } else {
+                hoursSelect.innerHTML = '<option>No available hours</option>';
             }
-        };
-
-        xhr.send("service_id=" + serviceId + "&date=" + selectedDate);
+        })
+        .catch(error => console.error("Error fetching available hours:", error));
     }
 
     // Verificar la capacidad
@@ -114,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Evento para actualizar horas disponibles
+    // Eventos
     serviceSelect.addEventListener("change", updateAvailableHours);
     dateInput.addEventListener("change", updateAvailableHours);
     hoursSelect.addEventListener("change", checkCapacity);
