@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-12-2024 a las 21:05:50
+-- Tiempo de generación: 30-01-2025 a las 20:57:44
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -32,26 +32,9 @@ DROP TABLE IF EXISTS `071_customers`,
                      `071_invoices`,
                      `071_services`,  
                      `071_reports`;
-    
+                     `071_reservation_services` 
 SET FOREIGN_KEY_CHECKS = 1;
 
-
-DELIMITER $$
---
--- Funciones
---
-DROP FUNCTION IF EXISTS `071_total_days_between_dates`$$
-CREATE FUNCTION `071_total_days_between_dates` (`start_date` DATE, `end_date` DATE) RETURNS INT(11) DETERMINISTIC BEGIN
-    DECLARE total_days INT;
-    
-    -- Calculamos la diferencia entre las dos fechas
-    SET total_days = DATEDIFF(end_date, start_date);
-    
-    -- Devolvemos el total de días
-    RETURN total_days;
-END$$
-
-DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -291,6 +274,39 @@ CREATE TABLE IF NOT EXISTS `071_reservation_details` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `071_reservation_services`
+--
+
+DROP TABLE IF EXISTS `071_reservation_services`;
+CREATE TABLE IF NOT EXISTS `071_reservation_services` (
+  `rs_id` int(11) NOT NULL AUTO_INCREMENT,
+  `reservation_id` int(11) NOT NULL,
+  `service_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL CHECK (`quantity` > 0),
+  `rs_price` double NOT NULL CHECK (`rs_price` >= 0),
+  `rs_date` date NOT NULL,
+  `rs_time` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`rs_time`)),
+  `rs_state` enum('Cancelled','Checked') NOT NULL DEFAULT 'Checked',
+  PRIMARY KEY (`rs_id`),
+  KEY `fk_reservation` (`reservation_id`),
+  KEY `fk_service` (`service_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `071_reservation_services`
+--
+
+INSERT INTO `071_reservation_services` (`rs_id`, `reservation_id`, `service_id`, `quantity`, `rs_price`, `rs_date`, `rs_time`, `rs_state`) VALUES
+(1, 25, 1, 1, 8, '2024-12-15', '{\"type\": \"breakfast\", \"hour\": \"08:00\"}', 'Checked'),
+(2, 25, 1, 1, 16, '2024-12-15', '{\"type\": \"meal\", \"hour\": \"13:00\"}', 'Checked'),
+(3, 25, 1, 1, 16, '2024-12-15', '{\"type\": \"dinner\", \"hour\": \"20:00\"}', 'Checked'),
+(4, 25, 2, 1, 2, '2024-12-15', '{\"type\": \"deserts\", \"hour\": \"14:30\"}', 'Checked'),
+(5, 25, 2, 1, 15, '2024-12-15', '{\"type\": \"high quality wine\", \"hour\": \"19:00\"}', 'Checked'),
+(6, 25, 2, 1, 3, '2024-12-15', '{\"type\": \"terrace\", \"hour\": \"18:00\"}', 'Checked');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `071_rooms`
 --
 
@@ -398,21 +414,21 @@ DROP TABLE IF EXISTS `071_services`;
 CREATE TABLE IF NOT EXISTS `071_services` (
   `service_id` int(11) NOT NULL AUTO_INCREMENT,
   `service_name` varchar(50) NOT NULL,
-  `open_hour` time NOT NULL,
-  `close_hour` time NOT NULL,
   `standard_price` decimal(10,2) DEFAULT NULL,
   `extra_details` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`extra_details`)),
+  `maximum_capacity` int(10) DEFAULT NULL,
+  `open_hours` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   PRIMARY KEY (`service_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `071_services`
 --
 
-INSERT INTO `071_services` (`service_id`, `service_name`, `open_hour`, `close_hour`, `standard_price`, `extra_details`) VALUES
-(1, 'GYM', '10:00:00', '20:00:00', 20.00, NULL),
-(2, 'Spa', '16:00:00', '01:00:00', 20.00, NULL),
-(3, 'Restaurant', '08:00:00', '23:00:00', NULL, '{\n    \"breakfast\": \"8.00\",\n    \"meal\": \"16.00\",\n    \"dinner\": \"16.00\",\n    \"extras\": {\n        \"deserts\": \"2.00\",\n        \"high quality wine\": \"15.00\",\n        \"terrace\": \"3.00\"\n    }\n}');
+INSERT INTO `071_services` (`service_id`, `service_name`, `standard_price`, `extra_details`, `maximum_capacity`, `open_hours`) VALUES
+(1, 'GYM', 20.00, NULL, 10, '[\"08\", \"09\", \"10\", \"11\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\", \"18\", \"19\", \"20\", \"21\", \"22\", \"23\"]'),
+(2, 'Spa', 20.00, NULL, 20, '[\"08\", \"09\", \"10\", \"11\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\", \"18\", \"19\", \"20\", \"21\", \"22\", \"23\"]'),
+(3, 'Restaurant', NULL, '{\n    \"breakfast\": \"8.00\",\n    \"meal\": \"16.00\",\n    \"dinner\": \"16.00\",\n    \"extras\": {\n        \"deserts\": \"2.00\",\n        \"high quality wine\": \"15.00\",\n        \"terrace\": \"3.00\"\n    }\n}', 50, '[\"07\", \"08\", \"09\", \"10\", \"11\", \"12\", \"13\", \"14\", \"15\", \"16\", \"17\", \"18\", \"19\", \"20\", \"21\", \"22\", \"23\", \"00\", \"01\"]');
 
 -- --------------------------------------------------------
 
@@ -513,6 +529,13 @@ ALTER TABLE `071_reports`
 ALTER TABLE `071_reservations`
   ADD CONSTRAINT `071_reservations_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `071_customers` (`client_id`),
   ADD CONSTRAINT `071_reservations_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `071_rooms` (`room_id`);
+
+--
+-- Filtros para la tabla `071_reservation_services`
+--
+ALTER TABLE `071_reservation_services`
+  ADD CONSTRAINT `fk_reservation` FOREIGN KEY (`reservation_id`) REFERENCES `071_reservations` (`reservation_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_service` FOREIGN KEY (`service_id`) REFERENCES `071_services` (`service_id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `071_rooms`
