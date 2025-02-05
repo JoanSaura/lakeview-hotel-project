@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-01-2025 a las 20:57:44
+-- Tiempo de generación: 05-02-2025 a las 18:57:10
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,7 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `071_hotel_managment`
 --
-
 SET FOREIGN_KEY_CHECKS = 0;
 
 DROP TABLE IF EXISTS `071_customers`, 
@@ -31,18 +30,16 @@ DROP TABLE IF EXISTS `071_customers`,
                      `071_reservations`,
                      `071_invoices`,
                      `071_services`,  
-                     `071_reports`;
-                     `071_reservation_services` 
+                     `071_reports`,
+                     `071_reservation_services`;
+
 SET FOREIGN_KEY_CHECKS = 1;
-
-
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `071_customers`
 --
 
-DROP TABLE IF EXISTS `071_customers`;
 CREATE TABLE IF NOT EXISTS `071_customers` (
   `client_id` int(11) NOT NULL AUTO_INCREMENT,
   `client_first_name` varchar(50) NOT NULL,
@@ -89,7 +86,6 @@ INSERT INTO `071_customers` (`client_id`, `client_first_name`, `client_last_name
 -- Estructura de tabla para la tabla `071_employee`
 --
 
-DROP TABLE IF EXISTS `071_employee`;
 CREATE TABLE IF NOT EXISTS `071_employee` (
   `employee_id` int(11) NOT NULL AUTO_INCREMENT,
   `employee_first_name` varchar(50) DEFAULT NULL,
@@ -124,7 +120,6 @@ INSERT INTO `071_employee` (`employee_id`, `employee_first_name`, `employee_last
 -- Estructura de tabla para la tabla `071_employee_position`
 --
 
-DROP TABLE IF EXISTS `071_employee_position`;
 CREATE TABLE IF NOT EXISTS `071_employee_position` (
   `position_id` int(11) NOT NULL AUTO_INCREMENT,
   `position_name` varchar(50) DEFAULT NULL,
@@ -148,7 +143,6 @@ INSERT INTO `071_employee_position` (`position_id`, `position_name`, `position_s
 -- Estructura de tabla para la tabla `071_invoices`
 --
 
-DROP TABLE IF EXISTS `071_invoices`;
 CREATE TABLE IF NOT EXISTS `071_invoices` (
   `invoice_id` int(11) NOT NULL AUTO_INCREMENT,
   `reservation_id` int(11) NOT NULL,
@@ -186,7 +180,6 @@ INSERT INTO `071_invoices` (`invoice_id`, `reservation_id`, `client_id`, `room_i
 -- Estructura de tabla para la tabla `071_reports`
 --
 
-DROP TABLE IF EXISTS `071_reports`;
 CREATE TABLE IF NOT EXISTS `071_reports` (
   `report_id` int(11) NOT NULL AUTO_INCREMENT,
   `reservation_id` int(11) NOT NULL,
@@ -208,7 +201,6 @@ INSERT INTO `071_reports` (`report_id`, `reservation_id`, `description`) VALUES
 -- Estructura de tabla para la tabla `071_reservations`
 --
 
-DROP TABLE IF EXISTS `071_reservations`;
 CREATE TABLE IF NOT EXISTS `071_reservations` (
   `reservation_id` int(11) NOT NULL AUTO_INCREMENT,
   `client_id` int(11) NOT NULL,
@@ -242,7 +234,6 @@ INSERT INTO `071_reservations` (`reservation_id`, `client_id`, `room_id`, `date_
 --
 -- Disparadores `071_reservations`
 --
-DROP TRIGGER IF EXISTS `update_room_status_on_reservation`;
 DELIMITER $$
 CREATE TRIGGER `update_room_status_on_reservation` AFTER INSERT ON `071_reservations` FOR EACH ROW BEGIN
     UPDATE 071_rooms
@@ -258,7 +249,6 @@ DELIMITER ;
 -- Estructura Stand-in para la vista `071_reservation_details`
 -- (Véase abajo para la vista actual)
 --
-DROP VIEW IF EXISTS `071_reservation_details`;
 CREATE TABLE IF NOT EXISTS `071_reservation_details` (
 `071_client_first_name` varchar(50)
 ,`071_client_last_name` varchar(50)
@@ -277,7 +267,6 @@ CREATE TABLE IF NOT EXISTS `071_reservation_details` (
 -- Estructura de tabla para la tabla `071_reservation_services`
 --
 
-DROP TABLE IF EXISTS `071_reservation_services`;
 CREATE TABLE IF NOT EXISTS `071_reservation_services` (
   `rs_id` int(11) NOT NULL AUTO_INCREMENT,
   `reservation_id` int(11) NOT NULL,
@@ -290,19 +279,33 @@ CREATE TABLE IF NOT EXISTS `071_reservation_services` (
   PRIMARY KEY (`rs_id`),
   KEY `fk_reservation` (`reservation_id`),
   KEY `fk_service` (`service_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `071_reservation_services`
 --
 
 INSERT INTO `071_reservation_services` (`rs_id`, `reservation_id`, `service_id`, `quantity`, `rs_price`, `rs_date`, `rs_time`, `rs_state`) VALUES
-(1, 25, 1, 1, 8, '2024-12-15', '{\"type\": \"breakfast\", \"hour\": \"08:00\"}', 'Checked'),
-(2, 25, 1, 1, 16, '2024-12-15', '{\"type\": \"meal\", \"hour\": \"13:00\"}', 'Checked'),
-(3, 25, 1, 1, 16, '2024-12-15', '{\"type\": \"dinner\", \"hour\": \"20:00\"}', 'Checked'),
-(4, 25, 2, 1, 2, '2024-12-15', '{\"type\": \"deserts\", \"hour\": \"14:30\"}', 'Checked'),
-(5, 25, 2, 1, 15, '2024-12-15', '{\"type\": \"high quality wine\", \"hour\": \"19:00\"}', 'Checked'),
-(6, 25, 2, 1, 3, '2024-12-15', '{\"type\": \"terrace\", \"hour\": \"18:00\"}', 'Checked');
+(7, 10, 3, 1, 8, '2024-09-15', '[\"08\"]', 'Checked'),
+(8, 10, 3, 1, 16, '2024-09-15', '[\"16\"]', 'Checked'),
+(9, 10, 3, 1, 16, '2024-09-15', '[\"20\"]', 'Checked'),
+(10, 12, 2, 3, 20, '2024-09-25', '[\"08\"]', 'Checked'),
+(11, 12, 3, 1, 8, '2024-09-25', '[\"08\"]', 'Checked'),
+(12, 12, 3, 1, 16, '2024-09-25', '[\"16\"]', 'Checked'),
+(13, 12, 3, 1, 16, '2024-09-25', '[\"20\"]', 'Checked'),
+(14, 16, 1, 1, 20, '2024-10-20', '[\"08\"]', 'Checked'),
+(15, 16, 3, 1, 8, '2024-10-20', '[\"08\"]', 'Checked'),
+(16, 16, 3, 1, 16, '2024-10-20', '[\"16\"]', 'Checked'),
+(17, 16, 3, 1, 16, '2024-10-20', '[\"20\"]', 'Checked'),
+(18, 17, 2, 3, 20, '2024-10-25', '[\"08\"]', 'Checked'),
+(19, 24, 2, 3, 20, '2024-12-04', '[\"08\"]', 'Checked'),
+(20, 24, 3, 1, 8, '2024-12-04', '[\"08\"]', 'Checked'),
+(21, 24, 3, 1, 16, '2024-12-04', '[\"16\"]', 'Checked'),
+(22, 24, 3, 1, 16, '2024-12-04', '[\"20\"]', 'Checked'),
+(23, 25, 2, 3, 20, '2024-12-15', '[\"08\"]', 'Checked'),
+(24, 25, 3, 1, 8, '2024-12-15', '[\"08\"]', 'Checked'),
+(25, 25, 3, 1, 16, '2024-12-15', '[\"16\"]', 'Checked'),
+(26, 25, 3, 1, 16, '2024-12-15', '[\"20\"]', 'Checked');
 
 -- --------------------------------------------------------
 
@@ -310,7 +313,6 @@ INSERT INTO `071_reservation_services` (`rs_id`, `reservation_id`, `service_id`,
 -- Estructura de tabla para la tabla `071_rooms`
 --
 
-DROP TABLE IF EXISTS `071_rooms`;
 CREATE TABLE IF NOT EXISTS `071_rooms` (
   `room_id` int(11) NOT NULL AUTO_INCREMENT,
   `room_number` int(11) DEFAULT NULL,
@@ -374,7 +376,6 @@ INSERT INTO `071_rooms` (`room_id`, `room_number`, `room_type_id`, `room_state`,
 -- Estructura de tabla para la tabla `071_room_type`
 --
 
-DROP TABLE IF EXISTS `071_room_type`;
 CREATE TABLE IF NOT EXISTS `071_room_type` (
   `room_type_id` int(11) NOT NULL AUTO_INCREMENT,
   `room_type_name` varchar(50) DEFAULT NULL,
@@ -410,7 +411,6 @@ INSERT INTO `071_room_type` (`room_type_id`, `room_type_name`, `room_type_price_
 -- Estructura de tabla para la tabla `071_services`
 --
 
-DROP TABLE IF EXISTS `071_services`;
 CREATE TABLE IF NOT EXISTS `071_services` (
   `service_id` int(11) NOT NULL AUTO_INCREMENT,
   `service_name` varchar(50) NOT NULL,
@@ -436,7 +436,6 @@ INSERT INTO `071_services` (`service_id`, `service_name`, `standard_price`, `ext
 -- Estructura de tabla para la tabla `071_users`
 --
 
-DROP TABLE IF EXISTS `071_users`;
 CREATE TABLE IF NOT EXISTS `071_users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_online` varchar(255) DEFAULT NULL,
@@ -495,7 +494,6 @@ INSERT INTO `071_users` (`user_id`, `user_online`, `user_password`, `user_mail`,
 --
 DROP TABLE IF EXISTS `071_reservation_details`;
 
-DROP VIEW IF EXISTS `071_reservation_details`;
 CREATE VIEW `071_reservation_details`  AS SELECT `c`.`client_first_name` AS `071_client_first_name`, `c`.`client_last_name` AS `071_client_last_name`, `rm`.`room_number` AS `071_room_number`, `rt`.`room_type_name` AS `071_room_type_name`, `rt`.`room_type_price_per_day` AS `071_room_price_per_day`, `r`.`date_in` AS `071_date_in`, `r`.`date_out` AS `071_date_out`, to_days(`r`.`date_out`) - to_days(`r`.`date_in`) AS `071_total_days`, (to_days(`r`.`date_out`) - to_days(`r`.`date_in`)) * `rt`.`room_type_price_per_day` AS `071_total_price` FROM (((`071_reservations` `r` join `071_customers` `c` on(`r`.`client_id` = `c`.`client_id`)) join `071_rooms` `rm` on(`r`.`room_id` = `rm`.`room_id`)) join `071_room_type` `rt` on(`rm`.`room_type_id` = `rt`.`room_type_id`)) ;
 
 --
@@ -507,48 +505,6 @@ CREATE VIEW `071_reservation_details`  AS SELECT `c`.`client_first_name` AS `071
 --
 ALTER TABLE `071_employee`
   ADD CONSTRAINT `071_employee_ibfk_1` FOREIGN KEY (`employee_position`) REFERENCES `071_employee_position` (`position_id`);
-
---
--- Filtros para la tabla `071_invoices`
---
-ALTER TABLE `071_invoices`
-  ADD CONSTRAINT `071_invoices_ibfk_1` FOREIGN KEY (`reservation_id`) REFERENCES `071_reservations` (`reservation_id`),
-  ADD CONSTRAINT `071_invoices_ibfk_2` FOREIGN KEY (`client_id`) REFERENCES `071_customers` (`client_id`),
-  ADD CONSTRAINT `071_invoices_ibfk_3` FOREIGN KEY (`room_id`) REFERENCES `071_rooms` (`room_id`),
-  ADD CONSTRAINT `fk_invoice_client` FOREIGN KEY (`client_id`) REFERENCES `071_customers` (`client_id`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `071_reports`
---
-ALTER TABLE `071_reports`
-  ADD CONSTRAINT `071_reports_ibfk_1` FOREIGN KEY (`reservation_id`) REFERENCES `071_reservations` (`reservation_id`);
-
---
--- Filtros para la tabla `071_reservations`
---
-ALTER TABLE `071_reservations`
-  ADD CONSTRAINT `071_reservations_ibfk_1` FOREIGN KEY (`client_id`) REFERENCES `071_customers` (`client_id`),
-  ADD CONSTRAINT `071_reservations_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `071_rooms` (`room_id`);
-
---
--- Filtros para la tabla `071_reservation_services`
---
-ALTER TABLE `071_reservation_services`
-  ADD CONSTRAINT `fk_reservation` FOREIGN KEY (`reservation_id`) REFERENCES `071_reservations` (`reservation_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `fk_service` FOREIGN KEY (`service_id`) REFERENCES `071_services` (`service_id`) ON DELETE CASCADE;
-
---
--- Filtros para la tabla `071_rooms`
---
-ALTER TABLE `071_rooms`
-  ADD CONSTRAINT `071_rooms_ibfk_1` FOREIGN KEY (`room_type_id`) REFERENCES `071_room_type` (`room_type_id`);
-
---
--- Filtros para la tabla `071_users`
---
-ALTER TABLE `071_users`
-  ADD CONSTRAINT `fk_client_id` FOREIGN KEY (`client_id`) REFERENCES `071_customers` (`client_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_employee_id` FOREIGN KEY (`employee_id`) REFERENCES `071_employee` (`employee_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS `071_customers`,
                      `071_invoices`,
                      `071_services`,  
                      `071_reports`;
-    
+                     `071_reservation_services` 
 SET FOREIGN_KEY_CHECKS = 1;
 
 - Que se puedan encargar servicios de manera singular
