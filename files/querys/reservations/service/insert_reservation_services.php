@@ -27,13 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Obtener el precio del servicio
-    $price_query = "SELECT price FROM 071_services WHERE service_id = ?";
-    $stmt = mysqli_prepare($conn, $price_query);
-    mysqli_stmt_bind_param($stmt, "i", $service_id);
-    mysqli_stmt_execute($stmt);
-    $price_result = mysqli_stmt_get_result($stmt);
+    $price_query = "SELECT price FROM 071_services WHERE service_id = '$service_id'";
+    $price_result = mysqli_query($conn, $price_query);
     $price_data = mysqli_fetch_assoc($price_result);
-    mysqli_stmt_close($stmt);
 
     // Si no se encuentra el precio, enviar error
     if (!$price_data) {
@@ -52,18 +48,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Insertar la reserva en la base de datos
     $insert_query = "INSERT INTO 071_reservation_services (reservation_id, service_id, quantity, rs_price, rs_date, rs_time, rs_state) 
-                     VALUES (?, ?, ?, ?, ?, ?, 'Checked')";
+                     VALUES ('$reservation_id', '$service_id', '$capacity', '$total_price', '$date', '$rs_time', 'Checked')";
 
-    $stmt = mysqli_prepare($conn, $insert_query);
-    mysqli_stmt_bind_param($stmt, "iiidss", $reservation_id, $service_id, $capacity, $total_price, $date, $rs_time);
-
-    if (mysqli_stmt_execute($stmt)) {
+    if (mysqli_query($conn, $insert_query)) {
         echo json_encode(["success" => "Reservation added successfully"]);
     } else {
         echo json_encode(["error" => "Database error: " . mysqli_error($conn)]);
     }
-
-    mysqli_stmt_close($stmt);
 }
 
 mysqli_close($conn);
