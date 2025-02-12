@@ -13,11 +13,8 @@ if (!isset($_SESSION['client_id'])) {
 $client_id = $_SESSION['client_id'];
 
 // Obtener reservas del cliente
-$reservations_query = "SELECT reservation_id FROM 071_reservations WHERE client_id = ?";
-$stmt = mysqli_prepare($conn, $reservations_query);
-mysqli_stmt_bind_param($stmt, "i", $client_id);
-mysqli_stmt_execute($stmt);
-$reservations_result = mysqli_stmt_get_result($stmt);
+$reservations_query = "SELECT reservation_id FROM 071_reservations WHERE client_id = $client_id";
+$reservations_result = mysqli_query($conn, $reservations_query);
 $reservations = [];
 
 while ($row = mysqli_fetch_assoc($reservations_result)) {
