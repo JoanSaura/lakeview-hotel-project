@@ -27,19 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Obtener el precio del servicio
-<<<<<<< Updated upstream
     $price_query = "SELECT price FROM 071_services WHERE service_id = '$service_id'";
     $price_result = mysqli_query($conn, $price_query);
     $price_data = mysqli_fetch_assoc($price_result);
-=======
-    $price_query = "SELECT standard_price FROM 071_services WHERE service_id = $service_id";
-    $price_result = mysqli_query($conn, $price_query);
-    
-    if (!$price_result) {
-        echo json_encode(["error" => "Database error: " . mysqli_error($conn)]);
-        exit;
-    }
->>>>>>> Stashed changes
 
     $price_data = mysqli_fetch_assoc($price_result);
     
@@ -60,17 +50,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Insertar la reserva en la base de datos
     $insert_query = "INSERT INTO 071_reservation_services (reservation_id, service_id, quantity, rs_price, rs_date, rs_time, rs_state) 
-<<<<<<< Updated upstream
                      VALUES ('$reservation_id', '$service_id', '$capacity', '$total_price', '$date', '$rs_time', 'Checked')";
 
     if (mysqli_query($conn, $insert_query)) {
-=======
-                     VALUES ($reservation_id, $service_id, $capacity, $total_price, '$date', '$rs_time', 'Checked')";
-
-    $insert_result = mysqli_query($conn, $insert_query);
-
-    if ($insert_result) {
->>>>>>> Stashed changes
         echo json_encode(["success" => "Reservation added successfully"]);
     } else {
         echo json_encode(["error" => "Database error: " . mysqli_error($conn)]);

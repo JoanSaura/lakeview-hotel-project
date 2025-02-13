@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const capacityWarning = document.getElementById("capacity-warning");
     const submitButton = document.getElementById("submit-button");
 
-    function updateAvailableHours() {
+    function fetchAvailableHours() {
         const serviceId = serviceSelect.value;
         const selectedDate = dateInput.value;
 
@@ -99,56 +99,29 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch("/student071/dwes/files/querys/reservations/service/get_available_hours.php", {
             method: "POST",
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams({ service_id: serviceId, date: selectedDate })
+            body: `service_id=${serviceId}&date=${selectedDate}`
         })
         .then(response => response.json())
         .then(data => {
-            hoursSelect.innerHTML = "";
-            if (data.hours.length > 0) {
-                data.hours.forEach(hour => {
-                    let option = document.createElement("option");
-                    option.value = hour.time;
-                    option.dataset.capacity = hour.remaining_capacity;
-                    option.textContent = `${hour.time}:00 (Available: ${hour.remaining_capacity})`;
-                    hoursSelect.appendChild(option);
-                });
-                submitButton.disabled = false;
-            } else {
-                hoursSelect.innerHTML = '<option>No available hours</option>';
-                submitButton.disabled = true;
-            }
+            hoursSelect.innerHTML = data.hours.length 
+                ? data.hours.map(hour => `<option value="${hour.time}" data-capacity="${hour.remaining_capacity}">${hour.time}:00 (Available: ${hour.remaining_capacity})</option>`).join('')
+                : '<option>No available hours</option>';
+
+            submitButton.disabled = data.hours.length === 0;
         })
-        .catch(error => {
-            console.error("Error fetching available hours:", error);
-            alert("Error loading available hours. Please try again.");
-        });
+        .catch(() => alert("Error loading available hours."));
     }
 
     function checkCapacity() {
-        const selectedOption = hoursSelect.options[hoursSelect.selectedIndex];
-        const remainingCapacity = selectedOption ? parseInt(selectedOption.dataset.capacity) : 0;
-        const requestedCapacity = parseInt(capacityInput.value) || 0;
-
-        if (requestedCapacity > remainingCapacity) {
-            capacityWarning.style.display = "block";
-            submitButton.disabled = true;
-        } else {
-            capacityWarning.style.display = "none";
-            submitButton.disabled = false;
-        }
+        const remainingCapacity = parseInt(hoursSelect.selectedOptions[0]?.dataset.capacity || 0);
+        submitButton.disabled = capacityInput.value > remainingCapacity;
+        capacityWarning.style.display = submitButton.disabled ? "block" : "none";
     }
 
-    function validateForm(event) {
-        if (!form.checkValidity()) {
-            event.preventDefault();
-            alert("Please complete all required fields correctly.");
-        }
-    }
-
-    serviceSelect.addEventListener("change", updateAvailableHours);
-    dateInput.addEventListener("change", updateAvailableHours);
+    serviceSelect.addEventListener("change", fetchAvailableHours);
+    dateInput.addEventListener("change", fetchAvailableHours);
     hoursSelect.addEventListener("change", checkCapacity);
     capacityInput.addEventListener("input", checkCapacity);
-    form.addEventListener("submit", validateForm);
 });
 </script>
+
