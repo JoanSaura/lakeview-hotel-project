@@ -26,9 +26,13 @@ SET FOREIGN_KEY_CHECKS = 1;
     Cleaning
         *Checkin
         *Checkin-out
+
+Pasar todos mis scripts a Jquery
+
 - Reservar servicios
     -Se puede reservar en un pasado
 - Reviews
     - Panel de control
+    - Que solo se pueda poner una reseña por reserva del usuario
     - Estilizar mas el forum principal
 - AcuWeather API

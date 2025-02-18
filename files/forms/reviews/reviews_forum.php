@@ -5,7 +5,6 @@ include($root . '/student071/dwes/files/common-files/header.php');
 ?>
 
 <div id="form-coments">
-    <!-- Listado de reseñas aceptadas -->
     <h2>Customer Reviews</h2>
     <div id="reviews-list">
         <?php 
@@ -32,7 +31,6 @@ include($root . '/student071/dwes/files/common-files/header.php');
     </div>
 </div>
 
-<!-- Formulario para dejar una reseña -->
 <h2>Leave a Review</h2>
 <form class="review-form" action="/student071/dwes/files/querys/reviews/insert_review.php" method="POST">
     <label for="review-title">Review Title</label>
@@ -49,7 +47,6 @@ include($root . '/student071/dwes/files/common-files/header.php');
         <i class="fa fa-star-o star" data-value="4"></i>
         <i class="fa fa-star-o star" data-value="5"></i>
     </div>
-    <!-- Campo oculto para almacenar el puntaje -->
     <input type="hidden" name="review_score" id="review-score" value="0" required>
 
     <button type="submit">Submit Review</button>
@@ -59,7 +56,6 @@ include($root . '/student071/dwes/files/common-files/header.php');
 include($root . '/student071/dwes/files/common-files/footer.php'); 
 ?>
 
-<!-- JavaScript para la funcionalidad interactiva de las estrellas -->
 <script>
 document.addEventListener("DOMContentLoaded", function() {
     const stars = document.querySelectorAll("#star-rating .star");
