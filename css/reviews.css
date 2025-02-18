@@ -1,0 +1,79 @@
+#form-coments {
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+h2 {
+    text-align: center;
+    color: #333;
+}
+.review-form {
+    margin-top: 40px;
+    padding: 20px;
+    border-top: 1px solid #ccc;
+}
+.review-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+.review-form input[type="text"],
+.review-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.review-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+#star-rating {
+    margin-bottom: 15px;
+}
+#star-rating .star {
+    font-size: 2em;
+    color: #ccc;
+    cursor: pointer;
+    margin-right: 5px;
+    transition: color 0.2s ease-in-out;
+}
+#star-rating .gold {
+    color: gold;
+}
+.review-form button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    display: block;
+    margin: 0 auto;
+}
+.review-form button:hover {
+    background-color: #0056b3;
+}
+.review-card {
+    background-color: #fafafa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+}
+.review-card h3 {
+    margin-top: 0;
+    color: #333;
+}
+.review-card p {
+    font-size: 1em;
+    color: #555;
+}
+.review-card small {
+    color: #888;
+}

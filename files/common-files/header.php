@@ -13,6 +13,7 @@ $root = $_SERVER['DOCUMENT_ROOT'];
     <link rel="stylesheet" href="/student071/dwes/css/style.css">
     <link rel="stylesheet" href="/student071/dwes/css/manuals.css" />
     <link rel="stylesheet" href="/student071/dwes/css/forms.css">
+    <link rel="stylesheet" href="/student071/dwes/css/reviews.css">
     <title>Lakeview Hotel</title>
     <script>
         function alertForLogin() {
