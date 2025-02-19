@@ -16,8 +16,8 @@ $review_title = isset($_POST['review_title']) ? mysqli_real_escape_string($conn,
 $user_id      = $_SESSION['user_id'];
 
 $query = "
-    INSERT INTO 071_reviews (user_id, customer_review, customer_score, inserted_on, accepted)
-    VALUES ($user_id, '$review_text', '$review_score', CURDATE(), 0)
+    INSERT INTO 071_reviews (user_id, customer_review, customer_score, inserted_on, accepted,review_title)
+    VALUES ($user_id, '$review_text', '$review_score', CURDATE(), 0, '$review_title')
 ";
 
 if (mysqli_query($conn, $query)) {

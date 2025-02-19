@@ -1,14 +1,21 @@
 <?php 
-$root = $_SERVER['DOCUMENT_ROOT']; 
+$root = $_SERVER['DOCUMENT_ROOT'];
 include($root . '/student071/dwes/files/common-files/db_connection.php');
+include($root . '/student071/dwes/files/functions/displayStars.php');
 include($root . '/student071/dwes/files/common-files/header.php'); 
 ?>
 
 <div id="form-coments">
+    <?php if ($_SESSION['role'] === 'admin'): ?>
+        <div class="admin-control">
+            <a href="/student071/dwes/files/forms/reviews/review_control_panel.php" class="admin-button">Review Control Panel</a>
+        </div>
+    <?php endif; ?>
+
     <h2>Customer Reviews</h2>
     <div id="reviews-list">
         <?php 
-        $query = "SELECT r.review_id, r.customer_review, r.customer_score, r.inserted_on, u.user_online 
+        $query = "SELECT r.review_id, r.customer_review, r.customer_score, r.inserted_on, r.review_title, u.user_online 
                   FROM 071_reviews r 
                   JOIN 071_users u ON r.user_id = u.user_id 
                   WHERE r.accepted = 1 
@@ -18,7 +25,8 @@ include($root . '/student071/dwes/files/common-files/header.php');
             while($review = mysqli_fetch_assoc($result)) {
                 ?>
                 <div class="review-card">
-                    <h3><?php echo htmlspecialchars($review['user_online']); ?> - <?php echo htmlspecialchars($review['customer_score']); ?> stars</h3>
+                <h3><?php echo htmlspecialchars($review['user_online']); ?> - <?php echo displayStars($review['customer_score']); ?></h3>
+                <h4><?php echo htmlspecialchars($review['review_title']); ?></h4>
                     <p><?php echo htmlspecialchars($review['customer_review']); ?></p>
                     <small>Posted on: <?php echo htmlspecialchars($review['inserted_on']); ?></small>
                 </div>
@@ -78,4 +86,3 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 </script>
-
