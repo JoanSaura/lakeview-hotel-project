@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-02-2025 a las 20:41:25
+-- Tiempo de generación: 20-02-2025 a las 20:14:37
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,7 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `071_hotel_managment`
 --
-SET FOREIGN_KEY_CHECKS = 0;
 
 DROP TABLE IF EXISTS `071_customers`, 
                      `071_room_type`,
@@ -31,8 +30,11 @@ DROP TABLE IF EXISTS `071_customers`,
                      `071_invoices`,
                      `071_services`,  
                      `071_reports`,
-                     `071_reservation_services`;
+                     `071_reservation_services`,
+                      `071_reviews`; 
 SET FOREIGN_KEY_CHECKS = 1;
+
+
 -- --------------------------------------------------------
 
 --
@@ -287,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `071_reservation_services` (
   PRIMARY KEY (`rs_id`),
   KEY `fk_reservation` (`reservation_id`),
   KEY `fk_service` (`service_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `071_reservation_services`
@@ -313,7 +315,40 @@ INSERT INTO `071_reservation_services` (`rs_id`, `reservation_id`, `service_id`,
 (23, 25, 2, 3, 20, '2024-12-15', '[\"08\"]', 'Checked'),
 (24, 25, 3, 1, 8, '2024-12-15', '[\"08\"]', 'Checked'),
 (25, 25, 3, 1, 16, '2024-12-15', '[\"16\"]', 'Checked'),
-(26, 25, 3, 1, 16, '2024-12-15', '[\"20\"]', 'Checked');
+(26, 25, 3, 1, 16, '2024-12-15', '[\"20\"]', 'Checked'),
+(27, 26, 1, 3, 60, '2025-02-15', '[\"08\"]', 'Checked'),
+(28, 27, 2, 2, 40, '2024-08-25', '[\"08\"]', 'Checked');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `071_reviews`
+--
+
+DROP TABLE IF EXISTS `071_reviews`;
+CREATE TABLE IF NOT EXISTS `071_reviews` (
+  `review_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `customer_review` varchar(500) DEFAULT NULL,
+  `customer_score` enum('1','2','3','4','5') DEFAULT NULL,
+  `inserted_on` date DEFAULT NULL,
+  `accepted` tinyint(1) DEFAULT NULL,
+  `review_title` varchar(300) DEFAULT NULL,
+  `reviewed` tinyint(1) DEFAULT 0,
+  PRIMARY KEY (`review_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `071_reviews`
+--
+
+INSERT INTO `071_reviews` (`review_id`, `user_id`, `customer_review`, `customer_score`, `inserted_on`, `accepted`, `review_title`, `reviewed`) VALUES
+(1, 1, 'The best hotel in the world', '5', '2024-09-20', 1, 'The best hotel in the world', 1),
+(2, 41, 'Fino señores', '4', '2024-10-25', 1, 'Una experiencia increbile', 1),
+(3, 4, 'No vengais nunca', '1', '2024-10-30', 0, 'Un robo', 0),
+(4, 16, 'Un robo', '3', '2024-10-05', 1, 'fallo', 0),
+(8, 21, 'El mejor hotel del mundo entero', '5', '2025-02-19', 1, 'El mejor hotel del mundo entero', 1);
 
 -- --------------------------------------------------------
 
@@ -508,6 +543,16 @@ DROP TABLE IF EXISTS `071_reservation_details`;
 
 DROP VIEW IF EXISTS `071_reservation_details`;
 CREATE VIEW `071_reservation_details`  AS SELECT `c`.`client_first_name` AS `071_client_first_name`, `c`.`client_last_name` AS `071_client_last_name`, `rm`.`room_number` AS `071_room_number`, `rt`.`room_type_name` AS `071_room_type_name`, `rt`.`room_type_price_per_day` AS `071_room_price_per_day`, `r`.`date_in` AS `071_date_in`, `r`.`date_out` AS `071_date_out`, to_days(`r`.`date_out`) - to_days(`r`.`date_in`) AS `071_total_days`, (to_days(`r`.`date_out`) - to_days(`r`.`date_in`)) * `rt`.`room_type_price_per_day` AS `071_total_price` FROM (((`071_reservations` `r` join `071_customers` `c` on(`r`.`client_id` = `c`.`client_id`)) join `071_rooms` `rm` on(`r`.`room_id` = `rm`.`room_id`)) join `071_room_type` `rt` on(`rm`.`room_type_id` = `rt`.`room_type_id`)) ;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `071_reviews`
+--
+ALTER TABLE `071_reviews`
+  ADD CONSTRAINT `071_reviews_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `071_users` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

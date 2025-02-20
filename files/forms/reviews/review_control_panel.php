@@ -10,10 +10,10 @@ include($root . '/student071/dwes/files/common-files/header.php');
 
     <?php
     $query = "
-        SELECT r.review_id, r.customer_review, r.customer_score, r.inserted_on,r.review_title, u.user_online 
+        SELECT r.review_id, r.customer_review, r.customer_score, r.inserted_on, r.review_title, u.user_online 
         FROM 071_reviews r 
         JOIN 071_users u ON r.user_id = u.user_id 
-        WHERE r.accepted = 0 
+        WHERE r.accepted = 0 AND r.reviewed = 0
         ORDER BY r.inserted_on DESC
     ";
     $result = mysqli_query($conn, $query);
@@ -28,7 +28,7 @@ include($root . '/student071/dwes/files/common-files/header.php');
                 <small>Posted on: <?php echo htmlspecialchars($review['inserted_on']); ?></small>
                 <div class="review-actions">
                     <a href="/student071/dwes/files/querys/reviews/update_review_status.php?review_id=<?php echo $review['review_id']; ?>&action=accept" class="accept-button">Accept</a>
-                    <a href="/student071/dwes/files/querys/reviews/update_review_status.php?review_id=<?php echo $review['review_id']; ?>&action=reject" class="reject-button">Reject</a>
+                    <a href="/student071/dwes/files/querys/reviews/ignore_review.php?review_id=<?php echo $review['review_id']; ?>" class="reject-button">Ignore</a>
                 </div>
             </div>
     <?php

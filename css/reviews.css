@@ -77,3 +77,14 @@ h2 {
 .review-card small {
     color: #888;
 }
+.admin-control {
+    text-align: center;
+    padding: 5px;
+    border: 2px solid #ccc;
+    background-color: #0056b3;
+    border-radius: 4px;
+}
+.admin-control a {
+    color: white;
+    text-decoration: none;
+}

@@ -8,8 +8,9 @@ DROP TABLE IF EXISTS `071_customers`,
                      `071_reservations`,
                      `071_invoices`,
                      `071_services`,  
-                     `071_reports`;
-                     `071_reservation_services` 
+                     `071_reports`,
+                     `071_reservation_services`,
+                     `071_reviews`;
 SET FOREIGN_KEY_CHECKS = 1;
 
 - Subida de archivos
@@ -32,7 +33,6 @@ Pasar todos mis scripts a Jquery
 - Reservar servicios
     -Se puede reservar en un pasado
 - Reviews
-    - Panel de control
     - Que solo se pueda poner una reseña por reserva del usuario
     - Estilizar mas el forum principal
 - AcuWeather API

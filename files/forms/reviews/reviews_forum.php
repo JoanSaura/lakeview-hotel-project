@@ -8,7 +8,7 @@ include($root . '/student071/dwes/files/common-files/header.php');
 <div id="form-coments">
     <?php if ($_SESSION['role'] === 'admin'): ?>
         <div class="admin-control">
-            <a href="/student071/dwes/files/forms/reviews/review_control_panel.php" class="admin-button">Review Control Panel</a>
+            <a class="admin-link" href="/student071/dwes/files/forms/reviews/review_control_panel.php" class="admin-button">Review Control Panel</a>
         </div>
     <?php endif; ?>
 
@@ -18,7 +18,7 @@ include($root . '/student071/dwes/files/common-files/header.php');
         $query = "SELECT r.review_id, r.customer_review, r.customer_score, r.inserted_on, r.review_title, u.user_online 
                   FROM 071_reviews r 
                   JOIN 071_users u ON r.user_id = u.user_id 
-                  WHERE r.accepted = 1 
+                  WHERE r.accepted = 1 AND r.reviewed = 1 
                   ORDER BY r.inserted_on DESC";
         $result = mysqli_query($conn, $query);
         if ($result && mysqli_num_rows($result) > 0) {
