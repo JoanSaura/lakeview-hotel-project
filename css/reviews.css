@@ -1,5 +1,5 @@
 #form-coments {
-    margin: 30px auto;
+    margin: 25px ;
     padding: 20px;
     background-color: #fff;
     border-radius: 8px;
@@ -12,6 +12,7 @@ h2 {
 .review-form {
     margin-top: 40px;
     padding: 20px;
+    margin: 25px;
     border-top: 1px solid #ccc;
 }
 .review-form label {

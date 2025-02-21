@@ -35,4 +35,5 @@ Pasar todos mis scripts a Jquery
 - Reviews
     - Que solo se pueda poner una reseña por reserva del usuario
     - Estilizar mas el forum principal
+    - Aceptar varias reseñas a la vez
 - AcuWeather API
