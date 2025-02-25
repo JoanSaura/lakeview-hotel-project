@@ -42,10 +42,10 @@ include($root . '/student071/dwes/files/common-files/header.php');
 <h2>Leave a Review</h2>
 <form class="review-form" action="/student071/dwes/files/querys/reviews/insert_review.php" method="POST">
     <label for="review-title">Review Title</label>
-    <input type="text" name="review_title" id="review-title" placeholder="Enter review title" required>
+    <input type="text" name="review_title" id="review-title" placeholder="Enter review title" required maxlength="50">
 
     <label for="review-text">Your Review</label>
-    <textarea name="review_text" id="review-text" placeholder="Write your review here..." required></textarea>
+    <textarea name="review_text" id="review-text" placeholder="Write your review here..." required maxlength="500"></textarea>
 
     <label>Rating</label>
     <div id="star-rating">
