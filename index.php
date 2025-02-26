@@ -1,8 +1,15 @@
-<?php $root = $_SERVER['DOCUMENT_ROOT']; ?>
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/student071/dwes/files/common-files/header.php'; ?>
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/student071/dwes/files/functions/displayAprovedReviews.php'; ?>
+<?php
+$root = $_SERVER['DOCUMENT_ROOT'];
+include $root . '/student071/dwes/files/common-files/header.php';
+include $root . '/student071/dwes/files/functions/displayAprovedReviews.php';
+include $root . '/student071/dwes/files/functions/showWeather.php';
+?>
 
 <div id="home-container">
+
+    <div id="weather-container">
+        <?php displayWeather(); ?>
+    </div>
 
     <div id="home">
         <div class="home-header">
@@ -22,7 +29,6 @@
 </div>
 
 <script src="/student071/dwes/js/home_slider.js"></script>
-
 <script src="/student071/dwes/js/review_slider.js"></script>
 
 <?php include $root . '/student071/dwes/files/common-files/footer.php'; ?>

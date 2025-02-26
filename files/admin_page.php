@@ -40,6 +40,12 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
                 <li><a href="/student071/dwes/files/forms/reservations/service/add_unic_service.php">Add Unic service</a></li>
             </ul>
         </div>
+        <div class="admin-list">
+            <h3>Other options</h3>
+            <ul>
+                <li><a href="/student071/dwes/files/querys/weatcher_change_db.php">Get Weather content</a></li>
+            </ul>
+        </div>
     </div>
 </div>
 
