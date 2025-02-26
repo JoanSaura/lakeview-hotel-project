@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-02-2025 a las 20:14:37
+-- Tiempo de generación: 26-02-2025 a las 19:13:08
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -16,10 +16,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `071_hotel_managment`
---
+SET FOREIGN_KEY_CHECKS = 0;
 
 DROP TABLE IF EXISTS `071_customers`, 
                      `071_room_type`,
@@ -31,9 +28,12 @@ DROP TABLE IF EXISTS `071_customers`,
                      `071_services`,  
                      `071_reports`,
                      `071_reservation_services`,
-                      `071_reviews`; 
+                     `071_reviews`,
+                     `071_weather`;
 SET FOREIGN_KEY_CHECKS = 1;
-
+--
+-- Base de datos: `071_hotel_managment`
+--
 
 -- --------------------------------------------------------
 
@@ -533,6 +533,28 @@ INSERT INTO `071_users` (`user_id`, `user_online`, `user_password`, `user_mail`,
 (39, 'Ana', NULL, 'ana.dearmas@gmail.com', NULL, 8, 'guest'),
 (40, 'Marta', NULL, 'marta.hazas@gmail.com', NULL, 9, 'guest'),
 (41, 'Paco', NULL, 'paco.lopez@gmail.com', NULL, 10, 'guest');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `071_weather`
+--
+
+DROP TABLE IF EXISTS `071_weather`;
+CREATE TABLE IF NOT EXISTS `071_weather` (
+  `api_id` int(11) NOT NULL,
+  `api_name` varchar(255) DEFAULT NULL,
+  `api_inserted_on` date DEFAULT NULL,
+  `api_json` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`api_json`)),
+  PRIMARY KEY (`api_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `071_weather`
+--
+
+INSERT INTO `071_weather` (`api_id`, `api_name`, `api_inserted_on`, `api_json`) VALUES
+(0, 'accuweather', '2025-02-26', '{\n    \"LocalObservationDateTime\": \"2025-02-26T18:41:00+01:00\",\n    \"EpochTime\": 1740591660,\n    \"WeatherText\": \"Sunny\",\n    \"WeatherIcon\": 1,\n    \"HasPrecipitation\": false,\n    \"PrecipitationType\": null,\n    \"IsDayTime\": true,\n    \"Temperature\": {\n        \"Metric\": {\n            \"Value\": 12.5,\n            \"Unit\": \"C\",\n            \"UnitType\": 17\n        },\n        \"Imperial\": {\n            \"Value\": 54,\n            \"Unit\": \"F\",\n            \"UnitType\": 18\n        }\n    },\n    \"MobileLink\": \"http:\\/\\/www.accuweather.com\\/en\\/es\\/madrid\\/308526\\/current-weather\\/308526?lang=en-us\",\n    \"Link\": \"http:\\/\\/www.accuweather.com\\/en\\/es\\/madrid\\/308526\\/current-weather\\/308526?lang=en-us\"\n}');
 
 -- --------------------------------------------------------
 
