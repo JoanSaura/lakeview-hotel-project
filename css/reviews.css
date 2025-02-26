@@ -89,3 +89,60 @@ h2 {
     color: white;
     text-decoration: none;
 }
+.carousel-container {
+    position: relative;
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+.carousel-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    color: black;
+}
+
+.review-slide {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+
+.review-card {
+    background: white;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.review-header h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.review-stars {
+    font-size: 20px;
+    color: gold;
+    margin: 10px 0;
+}
+
+button.prev, button.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 10px;
+}
+
+button.prev { left: 10px; }
+button.next { right: 10px; }
+
+button.prev:hover, button.next:hover {
+    background: black;
+}
+
