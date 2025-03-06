@@ -637,3 +637,43 @@ body {
   border-radius: 15px;
   padding: 7px;
 }
+
+#personal-assistant {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 520px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  z-index: 1001;
+}
+#assistant-header {
+  background: #1a025a;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+#assistant-menu {
+  display: flex;
+  justify-content: space-around;
+  background: #eee;
+  padding: 10px;
+}
+#assistant-menu button {
+  background: #ff5733;
+  color: white;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+#assistant-content {
+  padding: 15px;
+  height: 200px;
+  overflow-y: auto;
+}

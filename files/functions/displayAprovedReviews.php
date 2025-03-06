@@ -2,7 +2,7 @@
 function displayApprovedReviews() {
     $root = $_SERVER['DOCUMENT_ROOT'];
     include $root . '/student071/dwes/files/common-files/db_connection.php';
-    include $root . '/student071/dwes/files/functions/displayStars.php'; // Asegurar que la función esté incluida
+    include $root . '/student071/dwes/files/functions/displayStars.php'; 
 
     $query = "
         SELECT r.review_id, r.customer_review, r.customer_score, r.inserted_on, r.review_title, u.user_online 

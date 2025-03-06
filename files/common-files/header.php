@@ -14,7 +14,7 @@ $root = $_SERVER['DOCUMENT_ROOT'];
     <link rel="stylesheet" href="/student071/dwes/css/manuals.css" />
     <link rel="stylesheet" href="/student071/dwes/css/forms.css">
     <link rel="stylesheet" href="/student071/dwes/css/reviews.css">
-    <link rel="stylesheet" href="/stundent071/dwes/css/weather.css">
+    <link rel="stylesheet" href="/student071/dwes/css/weather.css">
     <title>Lakeview Hotel</title>
     <script>
         function alertForLogin() {
